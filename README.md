@@ -45,7 +45,36 @@ Before you begin, ensure you have met the following requirements:
    DATABASE_URL=your_database_url
    ```
 
-4. Run database migrations:
+4. Configure the database:
+   Edit the `config/config.json` file to match your PostgreSQL database configuration:
+
+   ```json
+   {
+     "development": {
+       "username": "username",
+       "password": "password",
+       "database": "database-name",
+       "host": "hostname",
+       "dialect": "postgres"
+     },
+     "test": {
+       "username": "username",
+       "password": "password",
+       "database": "database-name",
+       "host": "hostname",
+       "dialect": "postgres"
+     },
+     "production": {
+       "username": "username",
+       "password": "password",
+       "database": "database-name",
+       "host": "hostname",
+       "dialect": "postgres"
+     }
+   }
+   ```
+
+5. Run database migrations:
    ```sh
    npx sequelize-cli db:migrate
    ```
@@ -107,6 +136,8 @@ The server will start on the port specified in the `.env` file (default is 3000)
 
 ```sh
 trips-backend/
+├── config/
+│   └── config.json
 ├── controllers/
 │   ├── location.controller.js
 │   └── trip.controller.js
@@ -119,6 +150,7 @@ trips-backend/
 │   └── trip.routes.js
 ├── migrations/
 ├── .env
+├── .gitignore
 ├── package.json
 ├── server.js
 └── README.md
