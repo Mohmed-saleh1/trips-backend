@@ -8,7 +8,6 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Trip.associate = function (models) {
-    // associations can be defined here
     Trip.hasMany(models.Location, { foreignKey: "tripId" });
   };
   return Trip;

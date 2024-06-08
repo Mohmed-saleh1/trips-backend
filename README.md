@@ -12,8 +12,8 @@ This is a simple backend project for managing trips and their locations using No
 - [Models](#models)
 - [Controllers](#controllers)
 - [Routes](#routes)
+- [Testing](#testing)
 - [Running the Server](#running-the-server)
-- [License](#license)
 
 ## Prerequisites
 
@@ -148,12 +148,17 @@ trips-backend/
 ├── routes/
 │   ├── location.routes.js
 │   └── trip.routes.js
+├── tests/
+│   ├── trip.test.js
+│   └── location.test.js
+├── mocks/
 ├── migrations/
 ├── .env
 ├── .gitignore
 ├── package.json
 ├── server.js
 └── README.md
+
 ```
 
 ## Models
@@ -208,16 +213,107 @@ trips-backend/
 - **DELETE /trips/:id** - Calls `deleteTrip` in the Trip Controller.
 - **PATCH /trips/:id/status** - Calls `updateTripStatus` in the Trip Controller.
 
-## Running the Server
+## Testing
 
-To run the server in development mode:
+To test the API endpoints, you can use a tool like Postman or write automated tests using a testing framework like Jest and Supertest.
 
-```sh
-npm run dev
-```
+### Using Postman
 
-The server will start and listen for incoming requests on the port specified in the `.env` file.
+1. **Create Trip**
 
-## License
+   - **Method:** POST
+   - **URL:** `http://localhost:3000/trips`
+   - **Body:** `{"status": "ongoing"}`
+   - **Expected Response:**
+     ```json
+     {
+       "id": 1,
+       "status": "ongoing",
+       "createdAt": "2024-06-08T12:34:56.789Z",
+       "updatedAt": "2024-06-08T12:34:56.789Z"
+     }
+     ```
 
-This project is licensed under the ISC License.
+2. **Get All Trips**
+
+   - **Method:** GET
+   - **URL:** `http://localhost:3000/trips`
+   - **Expected Response:**
+     ```json
+     [
+       {
+         "id": 1,
+         "status": "ongoing",
+         "createdAt": "2024-06-08T12:34:56.789Z",
+         "updatedAt": "2024-06-08T12:34:56.789Z"
+       }
+     ]
+     ```
+
+3. **Get Trip by ID**
+
+   - **Method:** GET
+   - **URL:** `http://localhost:3000/trips/1`
+   - **Expected Response:**
+     ```json
+     {
+       "id": 1,
+       "status": "ongoing",
+       "createdAt": "2024-06-08T12:34:56.789Z",
+       "updatedAt": "2024-06-08T12:34:56.789Z"
+     }
+     ```
+
+4. **Update Trip**
+
+   - **Method:** PUT
+   - **URL:** `http://localhost:3000/trips/1`
+   - **Body:** `{"status": "completed"}`
+   - **Expected Response:**
+     ```json
+     {
+       "id": 1,
+       "status": "completed",
+       "createdAt": "2024-06-08T12:34:56.789Z",
+       "updatedAt": "2024-06-08T12:40:00.789Z"
+     }
+     ```
+
+5. **Delete Trip**
+
+   - **Method:** DELETE
+   - **URL:** `http://localhost:3000/trips/1`
+   - **Expected Response:** `204 No Content`
+
+6. **Submit Location**
+
+   - **Method:** POST
+   - **URL:** `http://localhost:3000/trips/1/locations`
+   - **Body:** `{"latitude": 12.34, "longitude": 56.78}`
+   - **Expected Response:**
+     ```json
+     {
+       "id": 1,
+       "tripId": 1,
+       "latitude": 12.34,
+       "longitude": 56.78,
+       "createdAt": "2024-06-08T12:45:00.789Z",
+       "updatedAt": "2024-06-08T12:45:00.789Z"
+     }
+     ```
+
+### Automated Tests with Jest and Supertest
+
+1. **Install dependencies:**
+
+   ```sh
+   npm install --save-dev jest supertest
+   ```
+
+2. **Create a `test` folder and add a `trip.test.js` file:**
+
+   ```javascript
+   const request = require("supertest");
+   const app = require("../server"); // Adjust the path as needed
+   const { sequelize } = require;
+   ```
