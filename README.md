@@ -73,12 +73,6 @@ Before you begin, ensure you have met the following requirements:
      }
    }
    ```
-
-5. Run database migrations:
-   ```sh
-   npx sequelize-cli db:migrate
-   ```
-
 ## Usage
 
 Start the development server:
