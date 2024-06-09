@@ -27,7 +27,7 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/yourusername/trips-backend.git
+   git clone https://github.com/Mohmed-saleh1/trips-backend.git
    cd trips-backend
    ```
 
