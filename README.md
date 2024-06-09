@@ -301,19 +301,3 @@ To test the API endpoints, you can use a tool like Postman or write automated te
        "updatedAt": "2024-06-08T12:45:00.789Z"
      }
      ```
-
-### Automated Tests with Jest and Supertest
-
-1. **Install dependencies:**
-
-   ```sh
-   npm install --save-dev jest supertest
-   ```
-
-2. **Create a `test` folder and add a `trip.test.js` file:**
-
-   ```javascript
-   const request = require("supertest");
-   const app = require("../server"); // Adjust the path as needed
-   const { sequelize } = require;
-   ```
